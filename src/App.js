@@ -1,26 +1,26 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Row} from "antd";
-import {useSelector} from "react-redux";
+import {HomeOutlined} from '@ant-design/icons'
 import Viewer from "./Components/Viewer";
 import Selectors from "./Components/Selectors/Selectors";
+import Controllers from "./Components/Controllers/Controllers";
+import UsersTable from "./Components/Users/UsersTable";
 
 const App = () => {
 
-    const state = useSelector(state => state?.main)
-
-    useEffect(() => {
-        console.log('state', state)
-    }, [state])
-
     return (
-        <Row style={{height: '100vh', flexDirection: 'column'}} justify='center' align='middle'>
-            <Row>
-                <Selectors />
-            </Row>
-
+        <Row style={{height: '100vh', flexDirection: 'column', flexWrap: 'nowrap'}} justify='center' align='middle'>
             <Row>
                 <Viewer />
             </Row>
+            <Row style={{marginBottom: 40}}>
+                <HomeOutlined style={{fontSize: 30, marginRight: 15, color:'#7696ff'}} />
+                <Selectors />
+            </Row>
+
+            <UsersTable />
+
+            <Controllers />
         </Row>
     );
 };

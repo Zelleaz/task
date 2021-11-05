@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ApiRequest from "../../api/ApiRequest";
 import {setDefaultSelected, setDefaultState} from "../../utils/setDefaultSelected";
 import {ActionCreators} from "../../Store/mainReducer/actionCreators";
+import ApiHousingStock from "../../api/ApiHousingStock";
 
 const SelectFlat = () => {
     const [selected, setSelected] = useState({label: 'Квартира', value: 0})
@@ -21,9 +22,11 @@ const SelectFlat = () => {
         }
     }, [house.id])
 
-    const onChange = ({ value, label }) => {
+    const onChange = async ({ value, label }) => {
         setSelected({ value, label })
         dispatch(ActionCreators.setHouseFlat({ id: value, name: label }))
+
+
     }
 
     return (
@@ -33,7 +36,7 @@ const SelectFlat = () => {
             disabled={!house.id > 0}
             labelInValue
             showSearch
-            placeholder="Выберите дом"
+            notFoundContent='Ничего не найдено'
             optionFilterProp="children"
             filterOption={(input, option) =>
                 option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0

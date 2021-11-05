@@ -1,6 +1,6 @@
 import React from 'react';
 import {useSelector} from "react-redux";
-import './viewer.css'
+import './viewer.scss'
 
 const Viewer = () => {
     const {street, house, flat} = useSelector(state => state?.main)

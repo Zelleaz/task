@@ -22,6 +22,7 @@ const SelectStreet = () => {
         onChange={onChange}
         labelInValue
         showSearch
+        notFoundContent='Ничего не найдено'
         placeholder="Выберите улицу"
         optionFilterProp="children"
         filterOption={(input, option) =>

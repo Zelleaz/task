@@ -1,9 +1,11 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {mainReducer} from "./mainReducer/mainReducer";
+import {clientsReducer} from "./clientsReducer/clientsReducer";
 
 const rootReducer = combineReducers({
-    main: mainReducer
+    main: mainReducer,
+    clients: clientsReducer
 })
 
 

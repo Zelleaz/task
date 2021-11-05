@@ -15,10 +15,10 @@ export const ActionCreators = {
         }
     },
 
-    setHouseFlat: ({ id, name }) => {
+    setHouseFlat: ({ id, name, flat }) => {
         return {
             type: SET_HOUSE_FLAT,
-            payload: { id, name }
+            payload: { id, name, flat }
         }
     },
 }

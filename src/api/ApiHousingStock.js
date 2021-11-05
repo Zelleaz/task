@@ -1,17 +1,22 @@
 import {Api} from "./api";
 import axios from "axios";
 
-export class ApiHousingStock extends Api {
+class ApiHousingStock extends Api {
     url = this.baseUrl + '/HousingStock'
 
-    async createClient({ Name, Phone, Email, BindId }) {
+    async createClient({ Name, Phone, Email }) {
         const { data } = await axios.post(`${this.url}/client`, {
             Name,
             Phone,
             Email,
-            BindId
         })
         return data
+    }
+
+    async get({streetId, houseId}) {
+        const { data } = await axios.get(`${this.url}`, {
+            params: { streetId, houseId }
+        })
     }
 
     async getClients(addressId) {
@@ -30,8 +35,14 @@ export class ApiHousingStock extends Api {
     }
 
     async unBindClient(id) {
-        const { data } = await axios.delete(`${this.url}/bind_client/id`)
-        return data
+        const response = await axios.delete(`${this.url}/bind_client/${id}`)
+        return response.data
+    }
+
+    async createAndBindClient({ Name, Phone, Email, AddressId }) {
+        const { id } = await this.createClient({Name, Phone, Email})
+        const res = await this.bindClient({ AddressId, ClientId: id })
+        return res
     }
 }
 

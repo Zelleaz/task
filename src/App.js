@@ -1,24 +1,27 @@
-import React, {useEffect, useState} from 'react';
-import ApiRequest from "./api/ApiRequest";
+import React, {useEffect} from 'react';
+import {Row} from "antd";
+import {useSelector} from "react-redux";
+import Viewer from "./Components/Viewer";
+import Selectors from "./Components/Selectors/Selectors";
 
 const App = () => {
-    const [streets, setStreets] = useState([])
 
-
-    useEffect( async () => {
-        const data = await ApiRequest.getStreets()
-        setStreets(data)
-    }, [])
-
+    const state = useSelector(state => state?.main)
 
     useEffect(() => {
-        console.log('streets', streets)
-    }, [streets])
+        console.log('state', state)
+    }, [state])
 
     return (
-        <div>
-          asd
-        </div>
+        <Row style={{height: '100vh', flexDirection: 'column'}} justify='center' align='middle'>
+            <Row>
+                <Selectors />
+            </Row>
+
+            <Row>
+                <Viewer />
+            </Row>
+        </Row>
     );
 };
 

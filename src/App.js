@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import ApiRequest from "./api/ApiRequest";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    const [streets, setStreets] = useState([])
+
+
+    useEffect( async () => {
+        const data = await ApiRequest.getStreets()
+        setStreets(data)
+    }, [])
+
+
+    useEffect(() => {
+        console.log('streets', streets)
+    }, [streets])
+
+    return (
+        <div>
+          asd
+        </div>
+    );
+};
 
 export default App;
